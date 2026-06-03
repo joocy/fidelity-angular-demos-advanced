@@ -1,4 +1,4 @@
-import { Component, signal, computed, ViewChild } from '@angular/core';
+import { Component, signal, computed } from '@angular/core';
 import { Trade } from './export-plugin.token';
 import { TradeBlotter } from './trade-blotter';
 import { ExportToolbar } from './export-toolbar';
@@ -45,23 +45,18 @@ const APEX_TRADES: Trade[] = [
         </p>
       </div>
 
-      <app-trade-blotter #blotter [trades]="trades" />
+      <app-trade-blotter [trades]="trades" (selectionChange)="selectedTrades.set($event)" />
 
-      <app-export-toolbar [trades]="blotterTrades()" />
+      <app-export-toolbar [trades]="exportTrades()" />
 
     </div>
   `,
 })
 export class App {
-  readonly trades = APEX_TRADES;
-
-  @ViewChild('blotter') blotterRef!: TradeBlotter;
-
-  /** Forward the blotter's current selection (or all trades if nothing selected) to the toolbar. */
-  readonly blotterTrades = computed(() => {
-    // Before the view is initialized we fall back to all trades
-    if (!this.blotterRef) return this.trades;
-    const selected = this.blotterRef.selectedTrades();
-    return selected.length > 0 ? selected : this.trades;
+  readonly trades         = APEX_TRADES;
+  readonly selectedTrades = signal<Trade[]>([]);
+  readonly exportTrades   = computed(() => {
+    const sel = this.selectedTrades();
+    return sel.length > 0 ? sel : this.trades;
   });
 }

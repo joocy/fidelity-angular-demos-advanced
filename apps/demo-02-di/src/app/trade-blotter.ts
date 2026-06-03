@@ -1,4 +1,5 @@
-import { Component, input, signal, computed } from '@angular/core';
+import { Component, input, output, signal, computed } from '@angular/core';
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
 import { Trade } from './export-plugin.token';
 
 @Component({
@@ -52,12 +53,12 @@ import { Trade } from './export-plugin.token';
       </table>
     </div>
   `,
-  imports: [],
+  imports: [CurrencyPipe, DecimalPipe],
 })
 export class TradeBlotter {
-  readonly trades = input.required<Trade[]>();
+  readonly trades        = input.required<Trade[]>();
+  readonly selectionChange = output<Trade[]>();
 
-  // Track selected trade IDs
   private readonly _selectedIds = signal<Set<string>>(new Set());
 
   readonly selectedAll = computed(() => {
@@ -77,19 +78,15 @@ export class TradeBlotter {
 
   toggleTrade(id: string): void {
     const next = new Set(this._selectedIds());
-    if (next.has(id)) {
-      next.delete(id);
-    } else {
-      next.add(id);
-    }
+    next.has(id) ? next.delete(id) : next.add(id);
     this._selectedIds.set(next);
+    this.selectionChange.emit(this.selectedTrades());
   }
 
   toggleSelectAll(): void {
-    if (this.selectedAll()) {
-      this._selectedIds.set(new Set());
-    } else {
-      this._selectedIds.set(new Set(this.trades().map(t => t.id)));
-    }
+    this._selectedIds.set(
+      this.selectedAll() ? new Set() : new Set(this.trades().map(t => t.id))
+    );
+    this.selectionChange.emit(this.selectedTrades());
   }
 }
