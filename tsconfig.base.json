@@ -1,0 +1,16 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "module": "preserve",
+    "target": "ES2022",
+    "lib": ["es2020","dom"],
+    "skipLibCheck": true,
+    "strict": true,
+    "paths": {}
+  },
+  "exclude": ["node_modules","tmp"]
+}

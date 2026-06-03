@@ -1,0 +1,42 @@
+{
+  "name": "demo-08-testing",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/demo-08-testing/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/demo-08-testing",
+        "browser": "apps/demo-08-testing/src/main.ts",
+        "index": "apps/demo-08-testing/src/index.html",
+        "tsConfig": "apps/demo-08-testing/tsconfig.app.json",
+        "styles": ["apps/demo-08-testing/src/styles.css"]
+      },
+      "configurations": {
+        "production": { "budgets": [{"type":"initial","maximumWarning":"500kb","maximumError":"1mb"}], "outputHashing": "all" },
+        "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": { "buildTarget": "demo-08-testing:build:production" },
+        "development": { "buildTarget": "demo-08-testing:build:development" }
+      },
+      "defaultConfiguration": "development",
+      "options": { "port": 4508 }
+    },
+    "lint": { "executor": "@nx/eslint:lint" },
+    "test": { "executor": "@angular/build:unit-test", "options": { "watch": false } },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npx playwright test", "cwd": "apps/demo-08-testing" }
+    }
+  }
+}
