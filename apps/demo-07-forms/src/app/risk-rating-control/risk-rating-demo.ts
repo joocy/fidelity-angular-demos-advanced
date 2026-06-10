@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RiskRatingControl } from './risk-rating.control';
 
 @Component({
   selector: 'app-risk-rating-demo',
-  imports: [ReactiveFormsModule, RiskRatingControl],
+  imports: [ReactiveFormsModule, RiskRatingControl, JsonPipe],
   template: `
     <div class="card">
       <h2>Custom ControlValueAccessor — Risk Rating Selector</h2>
