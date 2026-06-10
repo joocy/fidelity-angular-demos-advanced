@@ -16,9 +16,9 @@ import { ChartPlaceholder } from './sections/chart-placeholder';
     </nav>
 
     <div style="padding:1.5rem;max-width:1100px;margin:0 auto">
-      <h1 style="margin-bottom:0.25rem">Angular Performance: @defer Strategies</h1>
+      <h1 style="margin-bottom:0.25rem">Angular Performance: &#64;defer Strategies</h1>
       <p style="color:#6b7280;margin-bottom:1.5rem">
-        Five sections below each use a different <code>@defer</code> trigger.
+        Five sections below each use a different <code>&#64;defer</code> trigger.
         Explore how Angular splits your bundle and loads components on demand.
       </p>
 
@@ -28,7 +28,7 @@ import { ChartPlaceholder } from './sections/chart-placeholder';
         <ul style="margin:0;padding-left:1.25rem;line-height:1.8;color:#78350f">
           <li>Open <strong>Chrome DevTools → Network tab</strong> and throttle to <strong>"Slow 3G"</strong> to see deferred chunk requests appear.</li>
           <li>Open the <strong>Console tab</strong> — each deferred component logs when it initialises so you can see the exact moment it loads.</li>
-          <li>Each section below uses a different <code>@defer</code> trigger — scroll, click, wait, or just let the browser go idle.</li>
+          <li>Each section below uses a different <code>&#64;defer</code> trigger — scroll, click, wait, or just let the browser go idle.</li>
         </ul>
       </div>
 
@@ -37,7 +37,7 @@ import { ChartPlaceholder } from './sections/chart-placeholder';
         <!-- ─── Section 1: Always rendered ─── -->
         <section>
           <div class="card" style="border-top:3px solid #10b981">
-            <h2 style="color:#065f46">Section 1 — Eagerly loaded (no @defer)</h2>
+            <h2 style="color:#065f46">Section 1 — Eagerly loaded (no &#64;defer)</h2>
             <p style="color:#6b7280;font-size:0.875rem;margin-bottom:1rem">
               <code>FundBadge</code> is a simple component included in the initial bundle.
               It is always available immediately — no deferral needed for lightweight UI.
@@ -50,7 +50,7 @@ import { ChartPlaceholder } from './sections/chart-placeholder';
         <section>
           <div style="border-left:4px solid #6366f1;padding-left:1rem">
             <h3 style="color:#4338ca;margin-bottom:0.5rem">
-              Section 2 — <code>@defer (on idle)</code>
+              Section 2 — <code>&#64;defer (on idle)</code>
             </h3>
             <p style="color:#6b7280;font-size:0.875rem;margin-bottom:0.75rem">
               Defers until the browser has finished its initial work and becomes idle
@@ -74,7 +74,7 @@ import { ChartPlaceholder } from './sections/chart-placeholder';
         <section>
           <div style="border-left:4px solid #f59e0b;padding-left:1rem">
             <h3 style="color:#d97706;margin-bottom:0.5rem">
-              Section 3 — <code>@defer (on viewport)</code>
+              Section 3 — <code>&#64;defer (on viewport)</code>
             </h3>
             <p style="color:#6b7280;font-size:0.875rem;margin-bottom:0.75rem">
               Defers until the placeholder element enters the browser viewport
@@ -98,7 +98,7 @@ import { ChartPlaceholder } from './sections/chart-placeholder';
         <section>
           <div style="border-left:4px solid #ec4899;padding-left:1rem">
             <h3 style="color:#db2777;margin-bottom:0.5rem">
-              Section 4 — <code>@defer (on interaction(trigger))</code>
+              Section 4 — <code>&#64;defer (on interaction(trigger))</code>
             </h3>
             <p style="color:#6b7280;font-size:0.875rem;margin-bottom:0.75rem">
               Defers until the user interacts with a named template reference.
@@ -125,7 +125,7 @@ import { ChartPlaceholder } from './sections/chart-placeholder';
         <section>
           <div style="border-left:4px solid #14b8a6;padding-left:1rem">
             <h3 style="color:#0f766e;margin-bottom:0.5rem">
-              Section 5 — <code>@defer (on timer(2000))</code>
+              Section 5 — <code>&#64;defer (on timer(2000))</code>
             </h3>
             <p style="color:#6b7280;font-size:0.875rem;margin-bottom:0.75rem">
               Defers for a fixed duration after the page renders. Simulates deferring a

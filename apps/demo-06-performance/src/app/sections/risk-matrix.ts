@@ -40,7 +40,7 @@ function cellColor(level: string): string {
     <div class="card">
       <h2>Risk Matrix — 10 Sectors × 4 Risk Levels</h2>
       <p style="color:#6b7280;font-size:0.85rem;margin-bottom:0.75rem">
-        Loaded on viewport entry via <code>@defer (on viewport)</code>. Scroll down triggered this.
+        Loaded on viewport entry via <code>&#64;defer (on viewport)</code>. Scroll down triggered this.
       </p>
       <div style="overflow-x:auto">
         <table style="width:100%;border-collapse:collapse;font-size:0.85rem">

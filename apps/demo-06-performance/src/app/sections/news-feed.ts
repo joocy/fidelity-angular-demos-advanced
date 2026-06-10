@@ -52,7 +52,7 @@ const NEWS: NewsItem[] = [
     <div class="card">
       <h2>Market News Feed</h2>
       <p style="color:#6b7280;font-size:0.85rem;margin-bottom:0.75rem">
-        Loaded on interaction via <code>@defer (on interaction(trigger))</code>.
+        Loaded on interaction via <code>&#64;defer (on interaction(trigger))</code>.
         You clicked the button — now the news is here.
       </p>
       <div style="display:flex;flex-direction:column;gap:0.75rem">

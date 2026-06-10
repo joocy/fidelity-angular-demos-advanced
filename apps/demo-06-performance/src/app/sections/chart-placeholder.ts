@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <div class="card">
       <h2>Chart: Portfolio Performance</h2>
       <p style="color:#6b7280;font-size:0.85rem;margin-bottom:1rem">
-        Loaded after a 2-second timer via <code>@defer (on timer(2000))</code>.
+        Loaded after a 2-second timer via <code>&#64;defer (on timer(2000))</code>.
         Simulates deferring a heavyweight charting library until it's actually needed.
       </p>
 
