@@ -86,5 +86,7 @@ import { BlotterStore } from './trade-blotter.store';
   `,
 })
 export class SummaryPanel {
+  // This is the same providedIn: 'root' store instance used by OrdersPanel.
+  // Reading computed signals in the template keeps the summary in sync automatically.
   readonly store = inject(BlotterStore);
 }

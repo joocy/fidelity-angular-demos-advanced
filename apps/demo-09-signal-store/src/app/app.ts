@@ -4,6 +4,7 @@ import { SummaryPanel } from './summary-panel';
 
 @Component({
   selector: 'app-root',
+  // OnPush pairs well with signals because signal reads mark the component dirty.
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [OrdersPanel, SummaryPanel],
   template: `

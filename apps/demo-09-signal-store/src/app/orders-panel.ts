@@ -93,8 +93,10 @@ import { BlotterStore } from './trade-blotter.store';
   `,
 })
 export class OrdersPanel {
+  // Both panels inject the same root BlotterStore instance, so updates are shared.
   readonly store = inject(BlotterStore);
 
+  // Local form state belongs to the component; submitted orders belong to the store.
   symbol   = signal('AAPL');
   side     = signal<'BUY' | 'SELL'>('BUY');
   quantity = signal(100);
@@ -106,9 +108,11 @@ export class OrdersPanel {
 
   place(): void {
     if (!this.canPlace()) return;
+    // The component delegates the business transition to the store method.
     this.store.placeOrder(this.symbol().toUpperCase(), this.side(), this.quantity(), this.price());
   }
 
+  // Small template adapters keep event casting out of the inline bindings.
   asString(e: Event): string { return (e.target as HTMLInputElement).value; }
   asNumber(e: Event): number { return +(e.target as HTMLInputElement).value; }
   asSide(e: Event): 'BUY' | 'SELL' { return (e.target as HTMLSelectElement).value as 'BUY' | 'SELL'; }

@@ -10,13 +10,18 @@ export interface Order {
   price: number;
 }
 
+// signalStore composes a root-provided injectable store from small feature blocks.
 export const BlotterStore = signalStore(
   { providedIn: 'root' },
+  // withState defines the writable signal-backed state owned by the store.
   withState({
     orders: [] as Order[],
     nextId: 1,
   }),
+  // Custom features can add their own state and methods to the same store instance.
   withAuditLog(),
+  // withComputed exposes derived read-only signals that automatically recalculate
+  // when the orders signal changes.
   withComputed(({ orders }) => ({
     totalBuys: computed(() =>
       orders()
@@ -37,9 +42,12 @@ export const BlotterStore = signalStore(
     buyCount:  computed(() => orders().filter(o => o.side === 'BUY').length),
     sellCount: computed(() => orders().filter(o => o.side === 'SELL').length),
   })),
+  // withMethods is where state transitions live. Components call these methods
+  // instead of mutating orders directly.
   withMethods(store => ({
     placeOrder(symbol: string, side: 'BUY' | 'SELL', quantity: number, price: number): void {
       const id = store.nextId();
+      // patchState replaces state immutably, keeping signal change detection predictable.
       patchState(store, {
         orders: [...store.orders(), { id, symbol, side, quantity, price }],
         nextId: id + 1,
